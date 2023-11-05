@@ -42,7 +42,7 @@ options(knitr.kable.NA = '')
 
 # Data Pre-Processing
 
-```{r preprocess, echo = FALSE, message=FALSE, warning=FALSE}
+```{r preprocess, message=FALSE, warning=FALSE}
 library(Seurat)
 # Upload data provided
 hdat <- readRDS(file = "../1_Input/snRNA_Human_ControlDissection_integrated_seurat_v2.rds")
@@ -118,7 +118,7 @@ dev.off()
 # Figure 1
 ## Clustering
 
-```{r cluster_combined, echo = FALSE, message=FALSE, warning=FALSE}
+```{r cluster_combined, results='hide'}
 # Clustering
 umap_disease <- DimPlot(hdat, reduction = "umap", group.by = "Disease")
 umap_clusters <- DimPlot(TAA.combined, reduction = "umap", label = TRUE, repel = TRUE)
@@ -222,7 +222,7 @@ saveRDS(TAA.combined, file = "TAA_FFPE_snRNA.rds")
 
 ## Cell-type Annotation
 
-```{r merged.annotation, echo = FALSE, message=FALSE, warning=FALSE}
+```{r merged.annotation, results='hide'}
 library(Seurat)
 library(ggrepel)
 TAA.combined<-readRDS(file = "TAA_FFPE_snRNA.rds")
@@ -347,7 +347,7 @@ saveRDS(TAA.combined, file = "TAA_FFPE_snRNA.rds")
 
 ### VSMC Phenotypic Comparison
 
-```{r subpopulation, echo = FALSE, message=FALSE, warning=FALSE}
+```{r subpopulation, results='hide'}
 library(Seurat)
 library(dplyr)
 library(ggtrace)
@@ -508,7 +508,7 @@ dev.off()
 
 ### VSMC Trajectory Analysis (Monocle 3)
 
-```{r monocle3_Merged, echo = FALSE, message=FALSE, warning=FALSE}
+```{r monocle3_Merged, results='hide'}
 library(monocle3)
 library(Seurat)
 library(SeuratWrappers)
@@ -673,7 +673,7 @@ dev.off()
 ### VSMC Differential Expression (Dissection vs. Control)
 ######################################
 
-```{r DEGs_Disease, echo = FALSE, message=FALSE, warning=FALSE}
+```{r DEGs_Disease, results='hide'}
 library(ggpubr)
 hdat_vsmc$VSMC_phenotype <- Idents(hdat_vsmc)
 Idents(hdat_vsmc) <- "Disease"
